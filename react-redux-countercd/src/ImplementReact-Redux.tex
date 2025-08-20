@@ -1,0 +1,61 @@
+# React-Redux Counter Example
+This document outlines the steps to implement a simple counter application using React and Redux.
+
+
+    Implement React-Redux
+    
+Step 1: Setting Up the Project
+    -npm install redux react-redux
+
+Step 2: Define Action Types
+    You need to define action types, which represent the actions that will update the state.
+    -export const INCREMENT = 'INCREMENT';
+    -export const DECREMENT = 'DECREMENT';
+
+Step 3: Action Creators
+    Action creators are functions that return action objects.
+
+    import { INCREMENT, DECREMENT } from "./actionTypes";
+    -export const increment = () => ({
+    type: INCREMENT,
+    -});
+
+    -export const decrement = () => ({
+    type: DECREMENT,
+    -});
+
+Step 4: Reducers
+    Reducers specify how the application's state changes in response to actions. The reducer function receives the current state and action, and returns the updated state.
+
+    import { INCREMENT, DECREMENT } from "./actionTypes";
+
+    const initialState = {
+        count: 0,
+    };
+
+    const counterReducer = (state = initialState, action) => {
+        switch (action.type) {
+            case INCREMENT:
+                return { ...state, count: state.count + 1 };
+            case DECREMENT:
+                return { ...state, count: state.count - 1 };
+            default:
+                return state;
+        }
+    };
+
+    export default counterReducer;
+
+Step 5: Create the Redux Store
+    Now, create the Redux store using the createStore function from Redux.
+
+    import { createStore } from 'redux';
+    import counterReducer from './reducer';
+
+    const store = createStore(counterReducer);
+
+    export default store;
+
+
+
+
